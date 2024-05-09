@@ -1,6 +1,6 @@
 {
   "name": "@dvcorg/cml",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "description": "<p align=\"center\"> <img src=\"https://static.iterative.ai/img/cml/title_strip_trim.png\" width=400> </p>",
   "author": {
     "name": "Iterative Inc",
@@ -28,10 +28,55 @@
     "dvc"
   ],
   "license": "Apache-2.0",
-  "main": "index.js",
   "engines": {
     "node": ">=16.0.0"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "jest": true
+    },
+    "extends": [
+      "standard",
+      "prettier"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "ignorePatterns": [
+      "assets/",
+      "dist/",
+      "node_modules/"
+    ],
+    "rules": {
+      "camelcase": [
+        1,
+        {
+          "properties": "never"
+        }
+      ],
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "trailingComma": "none",
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "proseWrap": "always"
+  },
+  "main": "index.js",
   "bin": {
     "cml": "bin/cml.js",
     "cml-send-github-check": "bin/legacy/link.js",
@@ -87,24 +132,24 @@
     "is-docker": "2.2.1",
     "js-base64": "^3.7.2",
     "kebabcase-keys": "^1.0.0",
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^2.6.11",
     "node-ssh": "^12.0.0",
     "os-name": "^5.0.1",
     "proxy-agent": "^5.0.0",
     "pseudoexec": "^0.2.0",
     "remark": "^13.0.0",
-    "semver": "^7.3.5",
+    "semver": "^7.5.4",
     "simple-git": "^3.16.0",
     "strip-ansi": "^6.0.1",
     "strip-url-auth": "^1.0.1",
-    "tar": "^6.1.11",
+    "tar": "^6.1.15",
     "tempy": "^0.6.0",
     "timestring": "^6.0.0",
     "unist-util-visit": "^2.0.3",
     "uuid": "^8.3.2",
     "which": "^2.0.2",
-    "winston": "^3.3.3",
-    "yargs": "^17.5.0"
+    "winston": "^3.10.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "eslint": "^8.1.0",

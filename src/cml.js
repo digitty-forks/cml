@@ -213,7 +213,9 @@ class CML {
     const publishLocalFiles = async (tree) => {
       const nodes = [];
 
-      visit(tree, ['definition', 'image', 'link'], (node) => nodes.push(node));
+      visit(tree, ['definition', 'image', 'link'], (node) => {
+        nodes.push(node);
+      });
 
       const isWatermark = (node) => {
         return node.title && node.title.startsWith('CML watermark');
@@ -421,7 +423,14 @@ class CML {
   }
 
   async startRunner(opts = {}) {
-    return await this.getDriver().startRunner(opts);
+    const env = {};
+    const sensitive = [
+      '_CML_RUNNER_SENSITIVE_ENV',
+      ...process.env._CML_RUNNER_SENSITIVE_ENV.split(':')
+    ];
+    for (const variable in process.env)
+      if (!sensitive.includes(variable)) env[variable] = process.env[variable];
+    return await this.getDriver().startRunner({ ...opts, env });
   }
 
   async registerRunner(opts = {}) {
